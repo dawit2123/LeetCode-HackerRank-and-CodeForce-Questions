@@ -40,8 +40,7 @@ class Calculator {
      */
     divide(value) {
         if(value==0){
-            this.result="Division by zero is not allowed";
-            return this;
+            throw new Error("Division by zero is not allowed");
         }
         this.result/=value;
         return this;
