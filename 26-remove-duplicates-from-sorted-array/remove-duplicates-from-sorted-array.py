@@ -5,4 +5,5 @@ class Solution:
             if nums[i] != nums[i - 1]:
                 nums[j] = nums[i]
                 j += 1
+        print(f'the value of j is{j}')
         return j
