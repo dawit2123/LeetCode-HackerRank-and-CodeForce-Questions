@@ -9,4 +9,4 @@ class Solution:
                 min_len= min(min_len, R-L+1)
                 total-=nums[L]
                 L+=1
-        return min_len if min_len < len(nums)+1 else 0
+        return 0 if min_len== float("inf") else min_len
