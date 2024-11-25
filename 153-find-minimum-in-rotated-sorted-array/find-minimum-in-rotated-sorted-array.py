@@ -3,11 +3,9 @@ class Solution:
         l,r= 0, len(nums)-1
         while l<=r:
             mid=(l+r)//2
-            print(l, r, mid, mid>r)
             if l==r:
                 return nums[l]
             if nums[mid]>nums[r]:
                 l=mid+1
             else:
                 r=mid
-        return -1
