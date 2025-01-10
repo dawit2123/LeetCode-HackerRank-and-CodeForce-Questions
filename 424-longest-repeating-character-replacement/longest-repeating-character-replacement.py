@@ -5,7 +5,7 @@ class Solution:
         l=0
         for r in range(len(s)):
             count_freq[s[r]]+=1
-            if (sum(count_freq.values())-max(count_freq.values()))>k:
+            while (sum(count_freq.values())-max(count_freq.values()))>k:
                 count_freq[s[l]]-=1
                 l+=1
             res=max(res, r-l+1)
