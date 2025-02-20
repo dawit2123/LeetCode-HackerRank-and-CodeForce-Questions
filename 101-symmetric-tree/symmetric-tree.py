@@ -15,6 +15,3 @@ class Solution:
                 return dfs(node1.left, node2.right) and dfs(node1.right, node2.left)
             return False
         return dfs(root.right, root.left)
-
-            
-            
