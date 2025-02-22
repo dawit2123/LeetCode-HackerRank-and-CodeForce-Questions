@@ -1,25 +1,30 @@
 class Solution:
-    def recoverFromPreorder(self, traversal: str) -> Optional[TreeNode]:
-        self.s = traversal
-        self.idx = 0
-        self.level = 0
-        node = TreeNode(-1)
-        self.helper(node, 0)
-        return node.left
-
-    def helper(self, parent, lvl):
-        while self.idx < len(self.s) and lvl == self.level:
+    def recoverFromPreorder(self, s: str) -> TreeNode:
+        vp = []
+        i = 0
+        while i < len(s):
+            depth = 0
+            while i < len(s) and s[i] == '-':
+                depth += 1
+                i += 1
             num = 0
-            while self.idx < len(self.s) and self.s[self.idx].isdigit():
-                num = num * 10 + int(self.s[self.idx])
-                self.idx += 1
-            node = TreeNode(num)
-            if not parent.left:
-                parent.left = node
+            while i < len(s) and s[i] != '-':
+                num = num * 10 + int(s[i])
+                i += 1
+            vp.append((depth, num))
+        stack = []
+        root = None
+        for depth, nodeVal in vp:
+            node = TreeNode(nodeVal)
+            while stack and stack[-1][0] >= depth:
+                stack.pop()
+            if stack:
+                parent = stack[-1][1]
+                if parent.left is None:
+                    parent.left = node
+                else:
+                    parent.right = node
             else:
-                parent.right = node
-            self.level = 0
-            while self.idx < len(self.s) and self.s[self.idx] == '-':
-                self.level += 1
-                self.idx += 1
-            self.helper(node, lvl + 1)
+                root = node
+            stack.append((depth, node))
+        return root
