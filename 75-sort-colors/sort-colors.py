@@ -6,7 +6,6 @@ class Solution:
         count=[0]*3
         for num in nums:
             count[num]+=1
-        print(count)
         i=0
         for j, n in enumerate(count):
             for _ in range(n):
