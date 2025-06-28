@@ -6,11 +6,11 @@ class Solution:
             (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')
         ]
         
-        roman_numeral = []
+        roman_num = []
         
         for value, symbol in values:
             while num >= value:
-                roman_numeral.append(symbol)
+                roman_num.append(symbol)
                 num -= value
         
-        return ''.join(roman_numeral)
+        return ''.join(roman_num)
