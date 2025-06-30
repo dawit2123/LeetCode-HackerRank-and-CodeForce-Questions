@@ -4,7 +4,7 @@ class Solution:
         for num in nums:
             freq[num]= freq.get(num, 0)+1
         max_length=0
-        for num in nums:
+        for num in freq:
             if num+1 in freq:
                 max_length=max(max_length, freq[num]+freq[num+1])
         return max_length
