@@ -7,8 +7,7 @@ class Solution:
             if (i,j) in visited:
                 return 0
             visited.add((i,j))
-            perim= dfs(i, j)
-            perim+=dfs(i-1, j)
+            perim= dfs(i-1, j)
             perim+=dfs(i+1, j)
             perim+=dfs(i, j+1)
             perim+=dfs(i, j-1)
