@@ -3,8 +3,8 @@ class Solution:
         result=nums[0]
         temp=0
         for i in range(len(nums)):
-            temp+=nums[i]
-            result=max(result, temp)
             if temp<0:
                 temp=0
+            temp+=nums[i]
+            result=max(result, temp)
         return result
