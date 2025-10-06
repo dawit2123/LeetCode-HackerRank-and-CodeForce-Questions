@@ -6,7 +6,7 @@ class BrowserHistory:
         self.history=[homepage]
 
     def visit(self, url: str) -> None:
-        if self.i+2>len(self.history):
+        if self.i+1>len(self.history)-1:
             self.history.append(url)
         else:
             self.history[self.i+1]=url
