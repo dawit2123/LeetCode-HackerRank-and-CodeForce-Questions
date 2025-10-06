@@ -14,13 +14,15 @@ class BrowserHistory:
         self.length=self.i+1
 
     def back(self, steps: int) -> str:
-        self.i= max(self.i-steps, 0)
+        step=max(self.i-steps, 0)
+        self.i=step
         return self.history[self.i]
-    
+
     def forward(self, steps: int) -> str:
-        self.i=min(self.i+steps, self.length-1)
+        step= min(self.i+steps, self.length-1)
+        self.i=step
         return self.history[self.i]
-        
+
 
 # Your BrowserHistory object will be instantiated and called as such:
 # obj = BrowserHistory(homepage)
