@@ -1,17 +1,15 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
-        self.graph=defaultdict(list)
-        self.result=[]
-        for i , edges in enumerate(graph):
-            self.graph[i]=edges
-        def dfs(cur_list, cur_node):
-            if cur_node==len(graph)-1:
-                self.result.append(cur_list.copy())
-                return
-            for col in graph[cur_node]:
-                cur_list.append(col)
-                dfs(cur_list, col)
-                cur_list.pop()
-        dfs([0],0)
-        return self.result
-            
+        graph_path= {}
+        for i, edges in enumerate(graph):
+            graph_path[i]=edges
+        result=[]
+        def dfs(i, cur):
+            if i==(len(graph))-1:
+                result.append(cur.copy())
+            for direction in graph_path[i]:
+                cur.append(direction)
+                dfs(direction, cur)
+                cur.pop()
+        dfs(0, [0])
+        return result
