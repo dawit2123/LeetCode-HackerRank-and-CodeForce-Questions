@@ -1,43 +1,49 @@
 class Node:
-    def __init__(self, key=0, val=0):
+    def __init__(self, key, value):
         self.key=key
-        self.val=val
-        self.prev=self.next=None
+        self.val=value
+        self.prev, self.next= None, None
 
 class LRUCache:
 
     def __init__(self, capacity: int):
-        self.capacity=capacity
         self.hash_map={}
-        self.left, self.right=Node(), Node()
+        self.capacity=capacity
+        self.left, self.right= Node(0, 0), Node(0, 0)
         self.left.next, self.right.prev= self.right, self.left
 
     def insert(self, node):
         prev, nxt= self.right.prev, self.right
-        prev.next=nxt.prev=node
-        node.prev, node.next= prev, nxt
-
+        prev.next=node
+        nxt.prev=node
+        node.next=nxt
+        node.prev=prev
     def remove(self, node):
         prev, nxt= node.prev, node.next
-        prev.next, nxt.prev= nxt, prev
-
+        prev.next= nxt
+        nxt.prev=prev
     def get(self, key: int) -> int:
         if key in self.hash_map:
-            self.remove(self.hash_map[key])
-            self.insert(self.hash_map[key])
-            return self.hash_map[key].val
+            node= self.hash_map[key]
+            self.remove(node)
+            self.insert(node)
+            return node.val
         return -1
 
     def put(self, key: int, value: int) -> None:
         if key in self.hash_map:
-            self.remove(self.hash_map[key])
-        node=Node(key, value)
-        self.insert(node)
-        self.hash_map[key]=node
+            node= self.hash_map[key]
+            self.remove(node)
+            del self.hash_map[key]
+        new_node= Node(key, value)
+        self.insert(new_node)
+        self.hash_map[key]=new_node
         if len(self.hash_map)>self.capacity:
-            lru=self.left.next
-            self.remove(lru)
-            del self.hash_map[lru.key]
+            node= self.left.next
+            self.remove(node)
+            del self.hash_map[node.key]
+        
+
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
