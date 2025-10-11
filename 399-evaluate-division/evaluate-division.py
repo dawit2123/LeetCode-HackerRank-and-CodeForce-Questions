@@ -7,8 +7,8 @@ class Solution:
             graph[x][y]=result
             graph[y][x]=1.0/result
         def dfs(x, y, visited):
-            if x not in graph or y not in graph:
-                return -1.0
+            # if x not in graph or y not in graph:
+            #     return -1
 
             if y in graph[x]:
                 return graph[x][y]
