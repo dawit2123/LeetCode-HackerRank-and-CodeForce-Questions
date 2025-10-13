@@ -7,6 +7,7 @@ class Solution:
         def dfs(i, cur):
             if i==(len(graph))-1:
                 result.append(cur.copy())
+                return
             for direction in graph_path[i]:
                 cur.append(direction)
                 dfs(direction, cur)
