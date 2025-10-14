@@ -9,7 +9,7 @@ class Solution:
             else:
                 prevInc = inc
                 inc = 1
-            maxLen = max(maxLen, max(inc >> 1, min(prevInc, inc)))
+            maxLen = max(maxLen, max(inc//2, min(prevInc, inc)))
             if maxLen >= k:
                 return True
         return False
