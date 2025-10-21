@@ -21,4 +21,3 @@ class Solution:
             return memo[(x,y,ans)]
         a = dfs(0,0,0)
         return a-h<0
-#aijcoder
