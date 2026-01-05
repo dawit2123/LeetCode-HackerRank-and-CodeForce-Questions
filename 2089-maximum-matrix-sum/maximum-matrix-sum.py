@@ -11,9 +11,8 @@ class Solution:
                 smallest_num=min(smallest_num, abs_val)
                 if matrix[i][j]<0:
                     negative_count+=1
-        if negative_count%2==0:
-            return matrix_sum
-        else:
-            return (matrix_sum-(2*smallest_num))
+        if negative_count%2!=0:
+           matrix_sum= (matrix_sum-(2*smallest_num))
+        return matrix_sum
                 
                 
