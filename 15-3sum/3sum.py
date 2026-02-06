@@ -6,6 +6,8 @@ class Solution:
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i-1]:
                 continue
+            if nums[i]>0:
+                break
             
             j = i + 1
             k = len(nums) - 1
