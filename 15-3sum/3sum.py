@@ -24,6 +24,4 @@ class Solution:
 
                     while nums[j] == nums[j-1] and j < k:
                         j += 1
-
-        
         return res
