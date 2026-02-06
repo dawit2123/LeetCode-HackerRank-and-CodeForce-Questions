@@ -20,8 +20,11 @@ class Solution:
                 else:
                     res.append([nums[i], nums[j], nums[k]])
                     j += 1
+                    k-=1
 
                     while nums[j] == nums[j-1] and j < k:
                         j += 1
+                    while nums[k] == nums[k+1] and j < k:
+                        k-=1
         
         return res
