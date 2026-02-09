@@ -1,9 +1,8 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        max_p=0
-        min_buy=prices[0]
-        for sell in prices:
-            if sell-min_buy>0:
-                max_p=max(max_p, sell-min_buy)
-            min_buy=min(min_buy, sell)
-        return max_p
+        min_price=prices[0]
+        max_profit=0
+        for price in prices:
+            min_price=min(min_price, price)
+            max_profit= max(max_profit, price-min_price)
+        return max_profit
