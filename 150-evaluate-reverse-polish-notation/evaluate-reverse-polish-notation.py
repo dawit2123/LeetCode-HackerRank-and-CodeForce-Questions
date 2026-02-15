@@ -13,7 +13,7 @@ class Solution:
                 elif token=="*":
                     stack.append(number1*number2)
                 elif token=="/":
-                    stack.append(int((number2)/number1))
+                    stack.append(int(float(number2)/number1))
             else:
                 stack.append(int(token))
         return stack[-1]
