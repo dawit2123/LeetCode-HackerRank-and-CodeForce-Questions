@@ -1,29 +1,30 @@
-from collections import defaultdict, Counter
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if len(t)==0:
+        if t == "":
             return ""
-        t_count=Counter(t)
-        s_count=defaultdict(int)
-        have, need= 0, len(t_count)
-        min_left, min_right, min_window= 0, 0, float('infinity')
-        left=0
-        for right in range(len(s)):
-            c=s[right]
-            if c in t_count:
-                s_count[c]+=1
-                if s_count[c]==t_count[c]:
-                    have+=1
-            while have==need:
-                c=s[left]
-                print('hello', min_left, min_right)
-                if (right-left+1)<min_window:
-                    min_left, min_right, min_window= left, right, (right-left+1)
-                if c in t_count:
-                    s_count[c]-=1
-                    if s_count[c]<t_count[c]:
-                        have-=1
-                left+=1
-        return s[min_left:min_right+1] if min_window!=float('infinity') else ""
 
+        countT, window = {}, {}
+        for c in t:
+            countT[c] = 1 + countT.get(c, 0)
 
+        have, need = 0, len(countT)
+        res, resLen = [-1, -1], float("infinity")
+        l = 0
+        for r in range(len(s)):
+            c = s[r]
+            window[c] = 1 + window.get(c, 0)
+
+            if c in countT and window[c] == countT[c]:
+                have += 1
+
+            while have == need:
+                if (r - l + 1) < resLen:
+                    res = [l, r]
+                    resLen = r - l + 1
+
+                window[s[l]] -= 1
+                if s[l] in countT and window[s[l]] < countT[s[l]]:
+                    have -= 1
+                l += 1
+        l, r = res
+        return s[l : r + 1] if resLen != float("infinity") else ""
