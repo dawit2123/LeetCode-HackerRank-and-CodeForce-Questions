@@ -5,21 +5,17 @@ class Solution:
         """
         left, right= 0, len(matrix)-1
         while left<right:
-            top, bottom = left, right
+            top,bottom= left, right
             for i in range(right-left):
-                # saving the top left
+                # get the value of trhe top left
                 top_left= matrix[top][left+i]
-
-                # assigning the bottom left to the top left
+                # put the value of the bottom left to the top left
                 matrix[top][left+i]=matrix[bottom-i][left]
-
-                # assigning the bottom right to bottom left
+                # put the value of the bottom right to the bottom left
                 matrix[bottom-i][left]= matrix[bottom][right-i]
-                
-                # assigning the top right to the bottom right
-                matrix[bottom][right-i]= matrix[top+i][right]
-
-                # assinging the top left to the top right
-                matrix[top+i][right]= top_left
+                # put the value of the top right into the bottom right
+                matrix[bottom][right-i]=matrix[top+i][right]
+                # put the top left to the top right
+                matrix[top+i][right]=top_left
             left+=1
             right-=1
