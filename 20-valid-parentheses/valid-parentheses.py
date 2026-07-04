@@ -1,10 +1,10 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        hash_map={")":"(", "}":"{", "]":"["}
+        hash_map={"}":"{", "]":"[", ")":"("}
         stack=[]
         for c in s:
-            if stack and c in hash_map:
-                if stack and hash_map[c]==stack[-1]:
+            if c in hash_map:
+                if stack and stack[-1]==hash_map[c]:
                     stack.pop()
                 else:
                     return False
