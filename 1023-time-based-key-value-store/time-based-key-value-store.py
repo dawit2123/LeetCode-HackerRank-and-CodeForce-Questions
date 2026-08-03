@@ -8,22 +8,16 @@ class TimeMap:
         self.hash_map[key].append((timestamp, value))
 
     def get(self, key: str, timestamp: int) -> str:
-        key_values= self.hash_map[key]
-        left, right= 0, len(key_values)-1
+        left, right= 0, len(self.hash_map[key])-1
         while left<=right:
-            mid=(left+right)//2
-            if key_values[mid][0]==timestamp:
-                return key_values[mid][1]
-            elif timestamp>key_values[mid][0]:
-                left=mid+1
-            else:
+            mid= (left+right)//2
+            t=self.hash_map[key][mid][0]
+            if t==timestamp:
+                return self.hash_map[key][mid][1]
+            elif t>timestamp:
                 right=mid-1
+            else:
+                left=mid+1
         if left==0:
             return ""
-        return key_values[left-1][1]
-
-
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
+        return self.hash_map[key][left-1][1]
