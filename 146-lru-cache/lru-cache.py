@@ -41,7 +41,6 @@ class LRUCache:
             node=self.left.next
             self.remove(node)
             del self.hash_map[node.key]
-        print(f'capacity{self.capacity}, hash map {len(self.hash_map)}')
 
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
