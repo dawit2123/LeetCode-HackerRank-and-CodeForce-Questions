@@ -12,3 +12,4 @@ class Solution:
                     slow=nums[slow]
                     if slow==slow2:
                         return slow
+
