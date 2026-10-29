@@ -8,6 +8,6 @@ class Solution:
                 abs(startPos - fruits[right][0]) + fruits[right][0] - fruits[left][0]
             ) > k:
                 total -= fruits[left][1]
-                left += 1
+                left += 1  
             res = max(res, total)
         return res
